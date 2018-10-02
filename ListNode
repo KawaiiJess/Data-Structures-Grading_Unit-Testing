@@ -1,0 +1,49 @@
+	public void jaddLast(Object e)
+    {
+	if (this.isEmpty())
+	    {
+		jaddFirst(e);
+	    }
+	else
+	    {
+		ListNode prev = this.head;
+		ListNode cur = this.head.next;
+		while (cur != null)
+		    {
+			prev = cur;
+			cur = cur.next;
+		    }
+		prev.next = new ListNode(e);
+		size++;
+	    }
+    }
+
+public void jaddFirst(Object e)
+    {
+	if (this.size == 0) //If LL is empty
+	    {
+		this.head.next = new ListNode(e); //Make a new node with e data.
+	    }
+	else //If LL is NOT empty
+	    {
+		ListNode newNode = new ListNode(e);
+		ListNode temp = this.head.next;
+		this.head.next = newNode;
+		newNode.next = temp;
+	    }
+	size++;
+    }
+
+    @Override //This has to be overridden because toString() already exists and I want my own copy.
+    public String toString()
+    {
+    	String result = "[";
+    	for (ListNode cur = this.head.next; cur != null; cur = cur.next)
+    	    {
+		if (cur.next != null)
+		    result += cur.data + ", ";
+		else
+		    result += cur.data;
+    	    }
+    	return result + "]";
+    }
